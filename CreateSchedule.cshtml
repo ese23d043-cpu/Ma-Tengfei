@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Add Schedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f4f6f9;
+    }
+
+    .form-card {
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    }
+
+    .form-select-lg {
+        border-radius: 10px;
+        border: 2px solid #e9ecef;
+    }
+
+    .btn-info-custom {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        border: none;
+        color: white;
+        border-radius: 10px;
+        padding: 12px 30px;
+        font-weight: 600;
+    }
+</style>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card form-card">
+            <div class="card-header bg-white border-0 pt-4 text-center">
+                <h3 class="fw-bold text-dark">Add Schedule</h3>
+                <p class="text-muted">Assign an employee to a shift.</p>
+            </div>
+            <div class="card-body px-5 pb-5">
+                <form action="/HCM/CreateSchedule" method="post">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-muted">Select Employee</label>
+                        <select name="EmployeeId" class="form-select form-select-lg" required>
+                            <option value="">-- Choose Employee --</option>
+                            @foreach (var emp in ViewBag.Employees as SelectList)
+                            {
+                                <option value="@emp.Value">@emp.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-muted">Select Shift</label>
+                        <select name="ShiftId" class="form-select form-select-lg" required>
+                            <option value="">-- Choose Shift --</option>
+                            @foreach (var shift in ViewBag.Shifts as SelectList)
+                            {
+                                <option value="@shift.Value">@shift.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-5">
+                        <label class="form-label fw-bold text-muted">Working Date</label>
+                        <input type="date" name="Date" class="form-control form-control-lg" required value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                    </div>
+
+                    <div class="d-grid gap-3">
+                        <button type="submit" class="btn btn-info-custom btn-lg text-white">Save Schedule</button>
+                        <a href="/HCM/Schedules" class="btn btn-light btn-lg text-muted" style="border-radius: 10px;">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

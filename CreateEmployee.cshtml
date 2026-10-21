@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Add Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f4f6f9;
+    }
+
+    .form-card {
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    }
+
+    .form-control-lg {
+        border-radius: 10px;
+        border: 2px solid #e9ecef;
+    }
+
+        .form-control-lg:focus {
+            border-color: #667eea;
+            box-shadow: none;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: white;
+        border-radius: 10px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(118,75,162,0.4);
+            color: white;
+        }
+</style>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card form-card">
+            <div class="card-header bg-white border-0 pt-4 text-center">
+                <h3 class="fw-bold text-dark">Create Employee</h3>
+                <p class="text-muted">Fill in the details below to add a new member.</p>
+            </div>
+            <div class="card-body px-5 pb-5">
+                <!-- 原生 form action，绝对不会失效 -->
+                <form action="/HCM/CreateEmployee" method="post">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-muted">Full Name <span class="text-danger">*</span></label>
+                        <input type="text" name="Name" class="form-control form-control-lg" placeholder="e.g. John Doe" required />
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-muted">Store / Factory</label>
+                        <input type="text" name="StoreOrFactory" class="form-control form-control-lg" placeholder="e.g. Store A" />
+                    </div>
+                    <div class="mb-5">
+                        <label class="form-label fw-bold text-muted">Position</label>
+                        <input type="text" name="Position" class="form-control form-control-lg" placeholder="e.g. Barista" />
+                    </div>
+
+                    <div class="d-grid gap-3">
+                        <button type="submit" class="btn btn-gradient btn-lg">Save Employee</button>
+                        <a href="/HCM/Employees" class="btn btn-light btn-lg text-muted" style="border-radius: 10px;">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
